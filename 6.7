@@ -1,0 +1,7 @@
+pushd build
+  ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib
+  make
+popd
