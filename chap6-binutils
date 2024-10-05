@@ -1,0 +1,11 @@
+../configure                   \
+    --prefix=/usr              \
+    --build=$(../config.guess) \
+    --host=$LFS_TGT            \
+    --disable-nls              \
+    --enable-shared            \
+    --enable-gprofng=no        \
+    --disable-werror           \
+    --enable-64-bit-bfd        \
+    --enable-new-dtags         \
+    --enable-default-hash-style=gnu
