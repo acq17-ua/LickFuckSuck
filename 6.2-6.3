@@ -1,0 +1,35 @@
+tar -xf m4-1.4.19.tar.xz
+cd m4-1.4.19
+./configure --prefix=/usr   \
+            --host=$LFS_TGT \
+            --build=$(build-aux/config.guess)
+make; make DESTDIR=$LFS install
+
+tar -xf ncurses-6.5.tar.gz
+cd ncurses-6.5
+mkdir build
+pushd build
+  ../configure
+  make -C include
+  make -C progs tic
+popd
+./configure --prefix=/usr                \
+            --host=$LFS_TGT              \
+            --build=$(./config.guess)    \
+            --mandir=/usr/share/man      \
+            --with-manpage-format=normal \
+            --with-shared                \
+            --without-normal             \
+            --with-cxx-shared            \
+            --without-debug              \
+            --without-ada                \
+            --disable-stripping
+make
+make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
+ln -sv libncursesw.so $LFS/usr/lib/libncurses.so
+sed -e 's/^#if.*XOPEN.*$/#if 1/' \
+    -i $LFS/usr/include/curses.h
+  
+
+
+  
