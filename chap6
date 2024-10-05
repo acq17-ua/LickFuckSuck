@@ -1,0 +1,1 @@
+sed -i 's/"1"/"8"/'                    $LFS/usr/share/man/man8/chroot.8
