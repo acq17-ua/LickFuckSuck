@@ -6,3 +6,4 @@ pushd build
                --disable-zlib
   make
 popd
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
